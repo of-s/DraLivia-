@@ -318,7 +318,7 @@
   function ehPagto(){return S.sit==="Já sou paciente"&&rv("cinteresse")==="Agendar consulta"&&rv("ctipo")!=="Retorno"&&!!modoPag();}
   function nomePagC(){return rv("cpagante")==="nao"?v("cpnome"):v("cnome");}
   function cpfPagC(){return rv("cpagante")==="nao"?v("cpcpf"):v("ccpf");}
-  function pagamentoC(){var online=modoPag()==="Online",pg=rv("cpag"),out=[];if(!online){out.push(E.money+" *Taxa de agendamento:* R$ 200 (Pix)");out=out.concat(pixLinhas(false));out.push("");out.push(E.diam+" *Valores da consulta* (decididos no dia): Pix R$ 690 · Cartão R$ 740 (2x) / R$ 850 (3-10x)");out.push("_No dia você paga só a diferença: os R$ 200 da taxa já são descontados._");out.push("");out.push(comprovante);}else if(pg==="Cartão"){out.push(E.money+" *A pagar:*");out.push("R$ 650 (cartão, 2x)");out.push("");out.push(E.card+" *Cartão:* link enviado pela secretária");}else{out.push(E.money+" *A pagar:*");out.push("R$ 600 (Pix)");out.push("");out=out.concat(pixLinhas(rv("cnf")==="Sim"));out.push("");out.push(comprovante);}return out;}
+  function pagamentoC(){var online=modoPag()==="Online",pg=rv("cpag"),out=[];if(!online){out.push(E.money+" *Taxa de agendamento:* R$ 200 (Pix)");out=out.concat(pixLinhas(false));out.push("");out.push(E.diam+" *Valores da consulta* (decididos no dia): Pix R$ 690 · Cartão R$ 740 (2x) / R$ 850 (3-10x)");out.push("_No dia você paga só a diferença: os R$ 200 da taxa já são descontados._");out.push("");out.push(comprovante);}else if(pg==="Cartão"){out.push(E.money+" *A pagar:*");out.push("R$ 690 (cartão, até 2x sem juros · mais parcelas com juros)");out.push("");out.push(E.card+" *Cartão:* link enviado pela secretária");}else{out.push(E.money+" *A pagar:*");out.push("R$ 620 (Pix)");out.push("");out=out.concat(pixLinhas(rv("cnf")==="Sim"));out.push("");out.push(comprovante);}return out;}
   function ondeQuando(){var modo=modoConsulta();if(modo==="Consulta presencial"){var u=rv("nunidade");return u?u+" ("+DIA_UNI[u]+")":"";}return "";}
   function saudacao(){var nome=v("cnome").split(/\s+/)[0];var ola=nome?"*Olá, sou "+nome+".*":"*Olá!*";var quando=foraExpediente()?"Cheguei após o horário de expediente e gostaria de ":"Cheguei pelo site e gostaria de ";var it=rv("cinteresse");var fim;if(S.sit==="Já sou paciente"){if(it==="Agendar consulta"){var tp=rv("ctipo"),m=modoConsulta();fim=(tp==="Retorno")?"agendar meu *retorno (online).*":(m?"agendar uma *consulta "+m.replace("Consulta ","")+".*":"*agendar uma consulta.*");}else if(it==="Comprar lâmina")fim="*comprar uma lâmina.*";else if(it==="Tirar dúvidas")fim="*tirar uma dúvida.*";else fim="*falar com vocês.*";}else{if(it==="Consulta online")fim="marcar uma *consulta online.*";else if(it==="Consulta presencial")fim="marcar uma *consulta presencial.*";else fim="*entender melhor o atendimento.*";}return ola+"\n"+quando+fim;}
   function textoSimples(){
@@ -351,12 +351,12 @@
         '<p style="margin:9px 0 0"><b>Inclui:</b> consulta completa + avaliação microscópica + retorno em até 30 dias.</p></div></div>';
     }
     return '<div class="preco"><p class="tp">💻 Consulta online</p>'+
-      '<div class="big">R$ 600<small>no Pix (à vista)</small></div>'+
-      '<p class="alt">ou <b>R$ 650</b> no cartão (até 2x sem juros)</p>'+
+      '<div class="big">R$ 620<small>no Pix (à vista)</small></div>'+
+      '<p class="alt">ou <b>R$ 690</b> no cartão (até 2x sem juros) · mais parcelas com juros</p>'+
       '<div class="taxabox">💠 Você paga o <b>valor integral</b> ao agendar (garante o seu horário)</div>'+
       '<div class="inc">💜 Inclui consulta + análise + retorno em 30 dias</div>'+
       '<button class="vermais" type="button" onclick="toggleDet()">Ver detalhes <span class="vm-arr">⌄</span></button>'+
-      '<div class="det" id="det" hidden><ul><li>Consulta completa com a Dra. Livia</li><li>Avaliação microscópica inclusa</li><li>Retorno em até 30 dias</li><li>Receita digital com QR code, válida em todo o Brasil</li></ul>'+
+      '<div class="det" id="det" hidden><ul><li>Consulta completa com a Dra. Livia</li><li>Avaliação microscópica inclusa</li><li>Retorno em até 30 dias</li><li>Receita digital com QR code, válida em todo o Brasil</li><li>Cartão: até 2x sem juros, ou mais parcelas com juros</li></ul>'+
       '<p style="margin:9px 0 0">👉 <b>Pagamento antecipado</b>, para garantir o seu horário.</p></div></div>';
   }
   function cardValoresLamina(){
